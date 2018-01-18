@@ -11,10 +11,13 @@ import { app_routing } from './app.router';
 
 // Providers | Services
 import { PeliculasService } from './services/peliculas.service';
+
+// components and pipes
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { BuscarComponent } from './components/buscar/buscar.component';
 import { InfoComponent } from './components/info/info.component';
+import { SinfotoPipe } from './pipes/sinfoto.pipe';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,8 @@ import { InfoComponent } from './components/info/info.component';
     NavbarComponent,
     HomeComponent,
     BuscarComponent,
-    InfoComponent
+    InfoComponent,
+    SinfotoPipe
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { PeliculasService } from './services/peliculas.service';
 
 
 @Component({
@@ -9,8 +8,5 @@ import { PeliculasService } from './services/peliculas.service';
 })
 export class AppComponent {
 
-  constructor( public _peliculasService: PeliculasService){
-    this._peliculasService.getPopulares()
-            .subscribe(data => console.log(data));
-  }
+  constructor() { }
 }

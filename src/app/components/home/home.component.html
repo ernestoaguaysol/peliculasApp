@@ -1,3 +1,44 @@
-<p>
-  home works!
-</p>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Bienvenidos a Peliculas App</h1>
+    <p class="lead">Aquí podrá buscar todas las peliculas y su información.</p>
+  </div>
+</div>
+
+<h1>Peliculas Actuales</h1>
+<hr>
+<div class="card-columns">
+    <div class="card" *ngFor="let pelicula of peliculasActuales">
+      <img class="card-img-top" [src]="pelicula.backdrop_path | sinfoto" [alt]="pelicula.title">
+      <div class="card-body">
+        <h4 class="card-title">{{pelicula.title}}</h4>
+        <p class="card-text">
+          <small class="text-muted">{{ pelicula.release_date }}</small>
+        </p>
+        <button
+          [routerLink]="['/info']" 
+          class="btn btn-outline-primary btn-block">
+          Ver mas...
+        </button>
+      </div>
+    </div>
+</div>
+
+<h1>Peliculas Populares</h1>
+<hr>
+<div class="card-columns">
+    <div class="card" *ngFor="let pelicula of peliculasPopupares">
+      <img class="card-img-top" [src]="pelicula.backdrop_path | sinfoto" [alt]="pelicula.title">
+      <div class="card-body">
+        <h4 class="card-title">{{pelicula.title}}</h4>
+        <p class="card-text">
+          <small class="text-muted">{{ pelicula.release_date }}</small>
+        </p>
+        <button
+          [routerLink]="['/info']" 
+          class="btn btn-outline-primary btn-block">
+          Ver mas...
+        </button>
+      </div>
+    </div>
+</div>
