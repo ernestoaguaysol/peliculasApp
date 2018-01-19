@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
+  public termino: string;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  buscarPelicula() {
+    if (this.termino.length === 0) {
+      return;
+    }
+    console.log(this.termino);
+    
   }
 
 }

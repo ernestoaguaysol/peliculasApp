@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { PeliculasService } from '../../services/peliculas.service';
+import { ActivatedRoute } from '@angular/router';
+import { SinfotoPipe } from '../../pipes/sinfoto.pipe';
 
 @Component({
   selector: 'app-info',
@@ -7,7 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InfoComponent implements OnInit {
 
-  constructor() { }
+  public pelicula: any = {};
+
+  constructor(public _peliculasService: PeliculasService,
+              public activatedRoute: ActivatedRoute) {
+      this.activatedRoute.params
+      .map( params => params['id'])
+      .subscribe(id => {
+        console.log(id);
+        this._peliculasService.getPelicula(id).subscribe( peli => {
+          console.log(peli);
+          this.pelicula = peli;
+        });
+      });
+  }
 
   ngOnInit() {
   }

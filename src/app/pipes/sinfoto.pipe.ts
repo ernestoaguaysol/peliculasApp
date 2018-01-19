@@ -10,7 +10,7 @@ export class SinfotoPipe implements PipeTransform {
     if (!imagen) {
       return noimage;
     }
-    return (  imagen.length > 0) ? `http://image.tmdb.org/t/p/w600${imagen}` : noimage;
+    return (  imagen.length > 0) ? `http://image.tmdb.org/t/p/w300${imagen}` : noimage;
   }
 
 }

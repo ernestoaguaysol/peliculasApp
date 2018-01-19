@@ -9,14 +9,14 @@
 <hr>
 <div class="card-columns">
     <div class="card" *ngFor="let pelicula of peliculasActuales">
-      <img class="card-img-top" [src]="pelicula.backdrop_path | sinfoto" [alt]="pelicula.title">
+      <img class="card-img-top" [src]="pelicula.poster_path | sinfoto" [alt]="pelicula.title">
       <div class="card-body">
         <h4 class="card-title">{{pelicula.title}}</h4>
         <p class="card-text">
           <small class="text-muted">{{ pelicula.release_date }}</small>
         </p>
         <button
-          [routerLink]="['/info']" 
+          [routerLink]="['/info',pelicula.id]" 
           class="btn btn-outline-primary btn-block">
           Ver mas...
         </button>
@@ -28,14 +28,14 @@
 <hr>
 <div class="card-columns">
     <div class="card" *ngFor="let pelicula of peliculasPopupares">
-      <img class="card-img-top" [src]="pelicula.backdrop_path | sinfoto" [alt]="pelicula.title">
+      <img class="card-img-top" [src]="pelicula.poster_path | sinfoto" [alt]="pelicula.title">
       <div class="card-body">
         <h4 class="card-title">{{pelicula.title}}</h4>
         <p class="card-text">
           <small class="text-muted">{{ pelicula.release_date }}</small>
         </p>
         <button
-          [routerLink]="['/info']" 
+          [routerLink]="['/info',pelicula.id]"  
           class="btn btn-outline-primary btn-block">
           Ver mas...
         </button>
@@ -46,15 +46,15 @@
 <h1>Peliculas para niños mas populares</h1>
 <hr>
 <div class="card-columns">
-    <div class="card" *ngFor="let pelicula of peliculasPopupares">
-      <img class="card-img-top" [src]="pelicula.backdrop_path | sinfoto" [alt]="pelicula.title">
+    <div class="card" *ngFor="let pelicula of peliculasChicos">
+      <img class="card-img-top" [src]="pelicula.poster_path | sinfoto" [alt]="pelicula.title">
       <div class="card-body">
         <h4 class="card-title">{{pelicula.title}}</h4>
         <p class="card-text">
           <small class="text-muted">{{ pelicula.release_date }}</small>
         </p>
         <button
-          [routerLink]="['/info']" 
+          [routerLink]="['/info',pelicula.id]"  
           class="btn btn-outline-primary btn-block">
           Ver mas...
         </button>

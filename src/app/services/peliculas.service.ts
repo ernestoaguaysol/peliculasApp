@@ -8,8 +8,9 @@ export class PeliculasService {
 
   private apikey: string = '03c663b68c388a2aa1e88e1953795ac3';
   private urlMoviedb: string = "https://api.themoviedb.org/3";
+  private peliculas: any[];
 
-  constructor( private jsonp:Jsonp ) { }
+  constructor( private jsonp: Jsonp ) { }
 
   getActuales() {
     let fecha = new Date();
@@ -26,13 +27,26 @@ export class PeliculasService {
   }
   
   getPopulares() {
-    let url = `${ this.urlMoviedb }/discover/movie?primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22&api_key=${ this.apikey }&language=es&callback=JSONP_CALLBACK`;
-
+    let url = `${ this.urlMoviedb }/discover/movie?sort_by=popularity.desc&api_key=${ this.apikey }&language=es&callback=JSONP_CALLBACK`;
+    
     return this.jsonp.get( url )
-                .map( res => res.json());
+    .map( res => res.json());
+  }
+  
+  getPelicula(id: string) {
+    let url = `${ this.urlMoviedb }/movie/${id}?api_key=${ this.apikey }&language=es&callback=JSONP_CALLBACK`;
+    return this.jsonp.get( url )
+    .map( res => res.json());
   }
 
-  buscarPelicula( texto:string ) {
+  getPopularesChicos() {
+    let url = `${ this.urlMoviedb }/discover/movie?certification.lte=G&sort_by=popularity.asc&api_key=${ this.apikey }&language=es&callback=JSONP_CALLBACK`;
+    
+        return this.jsonp.get( url )
+                    .map( res => res.json());
+  }
+
+  buscarPelicula( texto: string ) {
 
     let url = `${ this.urlMoviedb }/search/movie?query=${ texto }&sort_by=popularity.desc&api_key=${ this.apikey }&language=es&callback=JSONP_CALLBACK`;
 

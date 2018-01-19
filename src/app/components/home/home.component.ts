@@ -10,6 +10,7 @@ export class HomeComponent implements OnInit {
 
   public peliculasPopupares: any[] = [];
   public peliculasActuales: any[] = [];
+  public peliculasChicos: any[] = [];
 
   constructor( public _peliculasService: PeliculasService) {
     this._peliculasService.getPopulares()
@@ -22,6 +23,12 @@ export class HomeComponent implements OnInit {
       .subscribe((data: any) => {
         this.peliculasActuales = data.results;
         console.log(this.peliculasActuales);
+      });
+
+    this._peliculasService.getPopularesChicos()
+      .subscribe((data: any) => {
+        this.peliculasChicos = data.results;
+        console.log(this.peliculasChicos);
       });
    }
 

@@ -7,7 +7,7 @@ import { InfoComponent } from './components/info/info.component';
 const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'buscar', component: BuscarComponent },
-    { path: 'info', component: InfoComponent },
+    { path: 'info/:id', component: InfoComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'home' }
 
 ];
