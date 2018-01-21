@@ -18,6 +18,7 @@ import { HomeComponent } from './components/home/home.component';
 import { BuscarComponent } from './components/buscar/buscar.component';
 import { InfoComponent } from './components/info/info.component';
 import { SinfotoPipe } from './pipes/sinfoto.pipe';
+import { GaleriaComponent } from './components/home/galeria.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { SinfotoPipe } from './pipes/sinfoto.pipe';
     HomeComponent,
     BuscarComponent,
     InfoComponent,
-    SinfotoPipe
+    SinfotoPipe,
+    GaleriaComponent
   ],
   imports: [
     BrowserModule,

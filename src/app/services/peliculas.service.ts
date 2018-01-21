@@ -7,43 +7,42 @@ import 'rxjs/Rx'; // Map
 export class PeliculasService {
 
   private apikey: string = '03c663b68c388a2aa1e88e1953795ac3';
-  private urlMoviedb: string = "https://api.themoviedb.org/3";
+  private urlMoviedb: string = 'https://api.themoviedb.org/3';
   private peliculas: any[];
 
   constructor( private jsonp: Jsonp ) { }
 
   getActuales() {
-    let fecha = new Date();
-    let f_hoy = fecha.toISOString().substring(0, 10);
-    let pasada = new Date(fecha.setDate(-15));
-    let f_pasada = pasada.toISOString().substring(0, 10);
-    console.log(f_hoy);
-    console.log(f_pasada);
-    
-    let url = `${ this.urlMoviedb }/discover/movie?api_key=${this.apikey}&language=es&sort_by=popularity.asc&primary_release_date.gte=${f_pasada}&primary_release_date.lte=${f_hoy}&language=es&callback=JSONP_CALLBACK`;
+    let desde = new Date();
+    let hasta = new Date();
+    hasta.setDate(hasta.getDate() + 7);
+    let desdeStr = desde.toISOString().substring(0, 10);
+    let hastaStr = hasta.toISOString().substring(0, 10);
+
+    let url = `${ this.urlMoviedb }/discover/movie?api_key=${this.apikey}&language=es&sort_by=popularity.asc&primary_release_date.gte=${desdeStr}&primary_release_date.lte=${hastaStr}&language=es&callback=JSONP_CALLBACK`;
     
     return this.jsonp.get( url )
-      .map( res => res.json());
+      .map( res => res.json().results);
   }
-  
+
   getPopulares() {
     let url = `${ this.urlMoviedb }/discover/movie?sort_by=popularity.desc&api_key=${ this.apikey }&language=es&callback=JSONP_CALLBACK`;
-    
+
     return this.jsonp.get( url )
-    .map( res => res.json());
+    .map( res => res.json().results);
   }
-  
+
+  getPopularesChicos() {
+    let url = `${ this.urlMoviedb }/discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc&api_key=${ this.apikey }&language=es&callback=JSONP_CALLBACK`;
+    
+        return this.jsonp.get( url )
+                    .map( res => res.json().results);
+  }
+
   getPelicula(id: string) {
     let url = `${ this.urlMoviedb }/movie/${id}?api_key=${ this.apikey }&language=es&callback=JSONP_CALLBACK`;
     return this.jsonp.get( url )
     .map( res => res.json());
-  }
-
-  getPopularesChicos() {
-    let url = `${ this.urlMoviedb }/discover/movie?certification.lte=G&sort_by=popularity.asc&api_key=${ this.apikey }&language=es&callback=JSONP_CALLBACK`;
-    
-        return this.jsonp.get( url )
-                    .map( res => res.json());
   }
 
   buscarPelicula( texto: string ) {
