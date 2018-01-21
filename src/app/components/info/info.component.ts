@@ -10,18 +10,26 @@ import { SinfotoPipe } from '../../pipes/sinfoto.pipe';
 })
 export class InfoComponent implements OnInit {
 
-  public pelicula: any = {};
+  public pelicula: any;
+  public regresarA: string = '';
+  public busqueda:string = '';
 
   constructor(public _peliculasService: PeliculasService,
               public activatedRoute: ActivatedRoute) {
+
       this.activatedRoute.params
-      .map( params => params['id'])
-      .subscribe(id => {
-        console.log(id);
-        this._peliculasService.getPelicula(id).subscribe( peli => {
-          console.log(peli);
-          this.pelicula = peli;
-        });
+      .subscribe(parametros => {
+        
+        this.regresarA = parametros['pag'];
+        
+        if (parametros['busqueda']) {
+          this.busqueda = parametros['busqueda'];
+        }
+        
+        this._peliculasService.getPelicula(parametros['id'])
+                    .subscribe( pelicula => {
+                      console.log(pelicula);
+                      return this.pelicula = pelicula});
       });
   }
 

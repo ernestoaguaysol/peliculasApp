@@ -1,17 +1,37 @@
-<div class="row">
-  <div class="col-md-3">
-    <label for="termino">Buscar Pelicula</label>
-    <input type="text" placeholder="Busque pelicula..." class="form-control" (keyup)="buscarPelicula()" [(ngModel)]="termino">
-  </div>
-  <div class="col-md-9" *ngIf="termino">
-    <h2 class="text-capitalize">{{termino}}</h2>
-    <hr>
-
-    <div class="row">
-      <div *ngFor="let pelicula of peliculas" class="col-md-4 text-center" [routerLink]="['/info', pelicula.id]">
-        <img [src]="pelicula.poster_path | sinfoto" alt="" class="img-thumbnail">
-        <p>{{pelicula.title}}</p>
+<div class="container main container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label> Buscar: </label>
+        <input type="text" 
+                placeholder="Busque pelicula..." 
+                class="form-control" 
+                (keyup.enter)="buscarPelicula()" 
+                [(ngModel)]="termino"
+                name="termino">
       </div>
     </div>
+  </div>
+
+  <div class="row animated fadeIn fast">
+      <div class="card-columns">
+
+          <div class="card" *ngFor="let pelicula of _peliculasService.peliculas">
+            <img class="card-img-top img-fluid" [src]="pelicula | sinfoto" [alt]="pelicula.title">
+            <div class="card-body">
+              <h4 class="card-title">{{pelicula.title}}</h4>
+              <p class="card-text text-justify">
+                {{ pelicula.overview | slice:0:250}}...
+                <small class="text-muted">{{ pelicula.release_date }}</small>
+              </p>
+              <button
+                [routerLink]="['/info',pelicula.id,'buscar',termino]"  
+                class="btn btn-outline-primary btn-block">
+                Ver mas...
+              </button>
+            </div>
+          </div>
+
+      </div>
   </div>
 </div>

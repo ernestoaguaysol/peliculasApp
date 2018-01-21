@@ -1,17 +1,37 @@
-<!-- <h1> {{ pelicula.title }} </h1> -->
-<hr>
+<div *ngIf="pelicula" 
+    class="container main-container animated fadeIn fast">
 
-<div class="row">
-  <div class="col-md-4">
-    <img [src]="pelicula.poster_path | sinfoto" class="img-fluid" alt="">
-    <br><br>
-    <a [routerLink]="['/home']" class="btn btn-outline-danger btn-block">Regresar</a>
+  <div class="row">
+
+
+    <div class="col-md-4">
+      <img [src]="pelicula | sinfoto:true" 
+            class="img-thumbnail img-fluid" 
+            [alt]="pelicula.original_title">
+      
+    </div>
+
+
+    <div class="col-md-8">
+      <h3>{{ pelicula.title }}</h3>
+      <hr>
+      <p>
+        Pupularidad: <span class="badge badge-primary">{{ pelicula.popularity | number:'.0-0'}}</span> 
+      </p>
+      <hr>
+      <p class="text-justify">
+        Sinopsis: {{ pelicula.overview }}
+      </p> 
+      <h4>
+        {{ pelicula.tagline }}
+      </h4>
+      <p>
+        Calificación: <span>{{ pelicula.vote_average }}</span>
+      </p>
+      <button [routerLink]="['/'+regresarA, busqueda]"
+              type="button" 
+              class="btn btn-outline-danger">Regresar</button>
+    </div>
   </div>
-  <div class="col-md-8">
-    <h3>{{ pelicula.title }}</h3>
-    <hr>
-    <p>
-      Pupularidad {{ pelicula.popularity }}
-    </p> 
-  </div>
+
 </div>

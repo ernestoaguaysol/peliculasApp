@@ -5,17 +5,21 @@
   </div>
 </div>
 
+<div class="container">
 
-
-<app-galeria [peliculas]="peliculasActuales|slice:0:6"
-              titulo="Peliculas en Cartelera"></app-galeria>
+    <app-galeria [peliculas]="peliculasActuales|slice:0:6"
+    titulo="Peliculas en Cartelera"></app-galeria>
 
 
 <app-galeria [peliculas]="peliculasPopupares|slice:0:6"
-              titulo="Peliculas Populares"></app-galeria>
+    titulo="Peliculas Populares"></app-galeria>
 
 <app-galeria [peliculas]="peliculasChicos|slice:0:6"
-              titulo="Peliculas para Niños"></app-galeria>
+    titulo="Peliculas para Niños"></app-galeria>
+
+</div>
+
+
 
 
 <!-- <h1>Peliculas para niños mas populares</h1>
